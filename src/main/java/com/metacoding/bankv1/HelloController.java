@@ -13,7 +13,7 @@ public class HelloController {
 
     @GetMapping("/t2")
     public String t2() {
-        return "account/list-form";
+        return "list";
     }
 
     @GetMapping("/t3")
