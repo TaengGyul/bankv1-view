@@ -18,6 +18,7 @@ public class UserController {
         return "redirect:/";
     }
 
+    // 로그인만 예외로 Post (조회시에도)
     @PostMapping("/login") // 로그인만 비밀번호가 걸려있어서 @Post로 던진다. @Get이 아님, 원래는 select라서 @Get인데 예외다.
     public String login(UserRequest.LoginDTO loginDTO) {
         User sessionUser = userService.로그인(loginDTO);
@@ -27,14 +28,14 @@ public class UserController {
 
     @GetMapping("/login-form")
     public String loginForm() {
-        session.setAttribute("metacoding", "apple");
+//        session.setAttribute("metacoding", "apple");
         return "user/login-form";
     }
 
     @GetMapping("/join-form")
     public String joinForm() {
-        String value = (String) session.getAttribute("metacoding");
-        System.out.println("value : " + value);
+//        String value = (String) session.getAttribute("metacoding");
+//        System.out.println("value : " + value);
         return "user/join-form";
     }
 
