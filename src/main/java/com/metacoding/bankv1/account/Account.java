@@ -19,6 +19,5 @@ public class Account {
     private String password;
     private Integer balance; // 잔액
     private Integer userId; // FK
-
     private Timestamp createdAt;
 }
