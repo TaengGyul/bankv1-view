@@ -20,13 +20,13 @@ public class AccountController {
 
     // /account/1111?type=전체 (동적 쿼리)
     @GetMapping("/account/{number}")
-    public String detail(@PathVariable("number") int number, @RequestParam(value = "type", required = false, defaultValue = "전체") String type) {
+    public String detail(@PathVariable("number") int number, @RequestParam(value = "type", required = false, defaultValue = "전체") String type,
+                         HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) throw new RuntimeException("로그인 후 사용해 주세요");
 
-        accountService.계좌상세보기(number, type, sessionUser.getId()); // getId()는 꼭 넣어야함 인증 아이디!
-//        System.out.println("number = " + number);
-//        System.out.println("type = " + type);
+        List<AccountResponse.DetailDTO> detailList = accountService.계좌상세보기(number, type, sessionUser.getId()); // getId()는 꼭 넣어야함 인증 아이디!
+        request.setAttribute("models", detailList);
         return "account/detail";
     }
 
